@@ -1,4 +1,6 @@
 import './App.css';
+import Board from './components/Board';
+import Keyboard from './components/Keyboard';
 
 function App() {
   return (
@@ -6,6 +8,8 @@ function App() {
       <nav>
         <h1>HollyWordle!!</h1>
       </nav>
+      <Board />
+      <Keyboard />
     </div>
   );
 }
