@@ -37,7 +37,18 @@ function App() {
 
   const onEnter = () => {
     if(currAttempt.letterPos !==6) return;
-    setCurrAttempt({attempt: currAttempt.attempt + 1, letterPos: 0})
+    let currWord = '';
+    for (let i = 0; i < 6; i++) {
+      currWord += board[currAttempt.attempt][i];
+    }
+    if (wordSet.has(currWord.toLocaleLowerCase())) {
+      setCurrAttempt({attempt: currAttempt.attempt + 1, letterPos: 0});
+    } else {
+      alert('word not found')
+    }
+    if (currWord === correctWord) {
+      alert('you win')
+    }
   }
   return (
     <div className="App">
