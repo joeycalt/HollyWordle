@@ -12,7 +12,7 @@ function App() {
   const [wordSet, setWordSet] = useState(new Set());
   const [disabledLetters, setDisabledLetters] = useState([]);
   const [correctWord, setCorrectWord] = useState('')
-  const [gameOver, setGameOver] = useState({gameOver: false, guessWord: false,});
+  const [gameOver, setGameOver] = useState({gameOver: false, guessWord: false,})
 
   useEffect (() => {
     generateWordSet().then((words) => {
@@ -38,12 +38,12 @@ function App() {
   }
 
   const onEnter = () => {
-    if(currAttempt.letterPos !==6) return;
+    if(currAttempt.letterPos ===6 ) return;
     let currWord = '';
     for (let i = 0; i < 6; i++) {
       currWord += board[currAttempt.attempt][i];
     }
-    if (wordSet.has(currWord.toLocaleLowerCase())) {
+    if (wordSet.has(currWord.toLowerCase())) {
       setCurrAttempt({attempt: currAttempt.attempt + 1, letterPos: 0});
     } else {
       alert('word not found')
