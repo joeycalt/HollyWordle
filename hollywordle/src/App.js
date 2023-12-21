@@ -38,7 +38,7 @@ function App() {
   }
 
   const onEnter = () => {
-    if(currAttempt.letterPos ===6 ) return;
+    if(currAttempt.letterPos !== 6 ) return;
     let currWord = '';
     for (let i = 0; i < 6; i++) {
       currWord += board[currAttempt.attempt][i];
@@ -52,7 +52,7 @@ function App() {
       setGameOver({gameOver: true, guessWord: true})
       return;
     }
-    if (currAttempt === 6) {
+    if (currAttempt.attempt === 6) {
       setGameOver({gameOver: true, guessWord: true});
       return;
     }
