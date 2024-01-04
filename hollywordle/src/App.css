@@ -117,15 +117,15 @@ nav h1 {
 }
 
 #correct {
-  background-color: blue;
+  background-color: green;
 }
 
 #almost {
-  background-color: white;
+  background-color: blue;
 }
 
 #error {
-  background-color: red;
+  background-color: black;
 }
 
 .keyboard {

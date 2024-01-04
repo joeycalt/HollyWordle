@@ -68,12 +68,7 @@ function App() {
   return (
     <div className="App">
       <nav>
-        <h1>HollyWordle!!</h1>
-        <div>
-          🟦 = Correct spot
-          ⬜️ = In the word 
-          🟥 = Not in word
-        </div>
+        <h1>HollyWordle</h1>
       </nav>
       <AppContext.Provider value={{board, setBoard,currAttempt, setCurrAttempt, onSelectLetter, onDelete, onEnter, correctWord, disabledLetters, setDisabledLetters, gameOver, setGameOver, replayGame}}>
       <div className='game'>
