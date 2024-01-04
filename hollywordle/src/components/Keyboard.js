@@ -8,7 +8,7 @@ const Keyboard = () => {
     const keys2 = ['A','S','D','F','G','H','J','K','L']
     const keys3 = ['Z','X','C','V','B','N','M']
     
-    const { board, currAttempt, gameOver, onEnter, onDelete, onSelectLetter, disabledLetters} = useContext(AppContext)
+    const { currAttempt, onEnter, onDelete, onSelectLetter, disabledLetters} = useContext(AppContext)
     
     const handleKeyboard = useCallback((event) => {
         if (event.key === 'Enter') {
