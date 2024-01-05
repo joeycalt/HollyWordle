@@ -32,7 +32,7 @@ const Keyboard = () => {
                 }
             })
         }
-    }, [currAttempt])
+    }, [currAttempt, keys1, keys2, keys3, onDelete, onEnter, onSelectLetter])
 
     useEffect(() => {
         document.addEventListener('keydown', handleKeyboard)
