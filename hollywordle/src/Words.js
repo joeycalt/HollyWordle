@@ -1,4 +1,4 @@
-import wordBank from '/Users/joeycaltabellotta/HollyWordle/hollywordle/src/components/word-bank.txt'
+import wordBank from 'hollywordle/src/word-bank.txt'
 
 export const boardDefault = [
 ['', '', '', '', '', ''],
