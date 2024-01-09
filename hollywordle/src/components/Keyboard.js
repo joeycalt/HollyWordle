@@ -3,11 +3,12 @@ import Key from './Key';
 import { AppContext } from '../App';
 
 const Keyboard = () => {
+    
     const { onEnter, onDelete, onSelectLetter, disabledLetters} = useContext(AppContext)
     
-    const keys1 = useMemo(() => ['A', 'B', 'C', 'D', 'E', 'F'], []);
-    const keys2 = useMemo(() => ['G', 'H', 'I', 'J', 'K', 'L'], []);
-    const keys3 = useMemo(() => ['M', 'N', 'O', 'P', 'Q', 'R'], []);
+    const keys1 = useMemo(() => ['Q', 'W' ,'E','R','T','Y','U','I','O','P'], []);
+    const keys2 = useMemo(() => ['A','S','D','F','G','H','J','K','L'], []);
+    const keys3 = useMemo(() => ['Z','X','C','V','B','N','M'], []);
 
 
     const handleKeyboard = useCallback((event) => {
