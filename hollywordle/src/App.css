@@ -7,7 +7,6 @@
   background-color: #121212;
   width: 100vw;
   height: 100vh;
-  /* display: flex; */
   color: white;
 }
 
@@ -31,6 +30,7 @@ nav h1 {
   color: white;
   font-size: 45px;
 }
+
 .game {
   width: 100vw;
   height: calc(100vh - 170px);
@@ -214,8 +214,6 @@ nav h1 {
   }
 }
 
-
-
 #disabled {
   background-color: #3a393c;
 }
@@ -232,4 +230,35 @@ nav h1 {
   align-items: center;
   background: gray;
   color: black;
+}
+
+h1 {
+  margin: 0;
+}
+
+.question {
+  margin: 20px 40px 0px 0px;
+  font-size: 20px;
+  background: none;
+  color: white;
+  border-color: white;
+  border-radius: 10px;
+}
+
+.question:hover {
+  color: blue;
+  border-color: blue;
+  cursor: pointer;
+}
+
+.container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.inner-container {
+  margin: 20px 0px 0px 40px;
+  display: flex;
+  align-items: center;
 }

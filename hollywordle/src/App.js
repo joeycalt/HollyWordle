@@ -18,7 +18,7 @@ function App() {
   const [gameOver, setGameOver] = useState({gameOver: false, guessedWord: false})
   const [showPopup, setShowPopup] = useState(true)
   const [popupVisible, setPopupVisible] = useState(true);
-
+  
   useEffect (() => {
     generateWordSet().then((words) => {
       setWordSet(words.wordSet)
@@ -26,59 +26,59 @@ function App() {
       console.group(words)
     })
   }, [])
-
-  const onSelectLetter = (keyVal) => {
-    const newBoard = [...board]
-    newBoard[currAttempt.attempt][currAttempt.letterPos] = keyVal;
-    setBoard(newBoard);
-    setCurrAttempt({...currAttempt, letterPos: currAttempt.letterPos + 1})
-  }
-
-  const onDelete = () => {
-    if (currAttempt.letterPos === 0) return;
-    const newBoard = [...board]
-    newBoard[currAttempt.attempt][currAttempt.letterPos-1] = '';
-    setBoard(newBoard)
-    setCurrAttempt({...currAttempt, letterPos: currAttempt.letterPos - 1})
-  }
-
-  const onEnter = () => {
-    if(currAttempt.letterPos !== 6 ) return;
-    let currWord = '';
-    for (let i = 0; i < 6; i++) {
-      currWord += board[currAttempt.attempt][i];
+    
+    const onSelectLetter = (keyVal) => {
+      const newBoard = [...board]
+      newBoard[currAttempt.attempt][currAttempt.letterPos] = keyVal;
+      setBoard(newBoard);
+      setCurrAttempt({...currAttempt, letterPos: currAttempt.letterPos + 1})
     }
-    if (wordSet.has(currWord.toLowerCase())) {
-      setCurrAttempt({attempt: currAttempt.attempt + 1, letterPos: 0});
-    } else {
-      alert('word not found')
+    
+    const onDelete = () => {
+      if (currAttempt.letterPos === 0) return;
+      const newBoard = [...board]
+      newBoard[currAttempt.attempt][currAttempt.letterPos-1] = '';
+      setBoard(newBoard)
+      setCurrAttempt({...currAttempt, letterPos: currAttempt.letterPos - 1})
     }
-    if (currWord === correctWord) {
-      setGameOver({ gameOver: true, guessedWord: true });
-      return;
+    
+    const onEnter = () => {
+      if(currAttempt.letterPos !== 6 ) return;
+      let currWord = '';
+      for (let i = 0; i < 6; i++) {
+        currWord += board[currAttempt.attempt][i];
+      }
+      if (wordSet.has(currWord.toLowerCase())) {
+        setCurrAttempt({attempt: currAttempt.attempt + 1, letterPos: 0});
+      } else {
+        alert('word not found')
+      }
+      if (currWord === correctWord) {
+        setGameOver({ gameOver: true, guessedWord: true });
+        return;
+      }
+      if (currAttempt.attempt === 6) {
+        setGameOver({ gameOver: true, guessedWord: false });
+        return;
+      }
     }
-    if (currAttempt.attempt === 6) {
-      setGameOver({ gameOver: true, guessedWord: false });
-      return;
-    }
-   }
-  const replayGame = () => {
-    setBoard(boardDefault);
-    setCurrAttempt({ attempt: 0, letterPos: 0 });
-    setDisabledLetters([]);
-    setGameOver(false);
-  };
-
-  const closePopup = () => {
-    setShowPopup(false);
-  };
-
-  const togglePopup = () => {
-    setPopupVisible(!popupVisible);
-  };
-  return (
-    <div className="App">
-     <NavBar togglePopup={togglePopup} />
+    const replayGame = () => {
+      setBoard(boardDefault);
+      setCurrAttempt({ attempt: 0, letterPos: 0 });
+      setDisabledLetters([]);
+      setGameOver(false);
+    };
+    
+    const closePopup = () => {
+      setShowPopup(false);
+    };
+    
+    const togglePopup = () => {
+      setShowPopup(!showPopup);
+    };
+    return (
+      <div className="App">
+      <NavBar togglePopup={togglePopup} />
       {showPopup && (
         <div className="popup-overlay">
           <PopUp closePopup={closePopup} />
@@ -97,8 +97,10 @@ function App() {
         setDisabledLetters, 
         gameOver, 
         setGameOver, 
-        replayGame
-        }}>
+        replayGame, 
+        togglePopup,
+        closePopup
+      }}>
       <div className='game'>
         <Board />
         {gameOver.gameOver ? <GameOver /> : <Keyboard />}
