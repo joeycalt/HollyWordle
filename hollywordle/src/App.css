@@ -219,3 +219,17 @@ nav h1 {
 #disabled {
   background-color: #3a393c;
 }
+
+.popup-overlay {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 30%;
+  height: 80%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: gray;
+  color: black;
+}

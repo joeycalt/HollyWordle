@@ -3,8 +3,9 @@ import { boardDefault, generateWordSet } from './Words';
 import Board from './components/Board';
 import Keyboard from './components/Keyboard';
 import { createContext, useState, useEffect } from 'react';
-import Gameover from './components/Gameover';
-
+import GameOver from '/Users/joeycaltabellotta/HollyWordle/hollywordle/src/App.js';
+import PopUp from './components/PopUp';
+import NavBar from './components/NavBar';
 
 export const AppContext = createContext();
 
@@ -15,6 +16,8 @@ function App() {
   const [disabledLetters, setDisabledLetters] = useState([]);
   const [correctWord, setCorrectWord] = useState('')
   const [gameOver, setGameOver] = useState({gameOver: false, guessedWord: false})
+  const [showPopup, setShowPopup] = useState(true)
+  const [popupVisible, setPopupVisible] = useState(true);
 
   useEffect (() => {
     generateWordSet().then((words) => {
@@ -51,11 +54,11 @@ function App() {
       alert('word not found')
     }
     if (currWord === correctWord) {
-      setGameOver({gameOver: true, guessedWord: true})
+      setGameOver({ gameOver: true, guessedWord: true });
       return;
     }
     if (currAttempt.attempt === 6) {
-      setGameOver({gameOver: true, guessedWord: true});
+      setGameOver({ gameOver: true, guessedWord: false });
       return;
     }
    }
@@ -63,17 +66,42 @@ function App() {
     setBoard(boardDefault);
     setCurrAttempt({ attempt: 0, letterPos: 0 });
     setDisabledLetters([]);
-    setGameOver({ gameOver: false, guessedWord: false });
+    setGameOver(false);
+  };
+
+  const closePopup = () => {
+    setShowPopup(false);
+  };
+
+  const togglePopup = () => {
+    setPopupVisible(!popupVisible);
   };
   return (
     <div className="App">
-      <nav>
-        <h1>HollyWordle</h1>
-      </nav>
-      <AppContext.Provider value={{board, setBoard,currAttempt, setCurrAttempt, onSelectLetter, onDelete, onEnter, correctWord, disabledLetters, setDisabledLetters, gameOver, setGameOver, replayGame}}>
+     <NavBar togglePopup={togglePopup} />
+      {showPopup && (
+        <div className="popup-overlay">
+          <PopUp closePopup={closePopup} />
+        </div>
+      )}
+      <AppContext.Provider value={{
+        board, 
+        setBoard,
+        currAttempt, 
+        setCurrAttempt, 
+        onSelectLetter, 
+        onDelete, 
+        onEnter, 
+        correctWord, 
+        disabledLetters, 
+        setDisabledLetters, 
+        gameOver, 
+        setGameOver, 
+        replayGame
+        }}>
       <div className='game'>
         <Board />
-        {gameOver.gameOver ? <Gameover /> : <Keyboard />}
+        {gameOver.gameOver ? <GameOver /> : <Keyboard />}
       </div>
       </AppContext.Provider>
     </div>
